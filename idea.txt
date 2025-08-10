@@ -1,0 +1,48 @@
+layout:
+login
+blank page
+2 tabs
+- accounts (table to track): inital balance, add transactions (+/-), view and update transactions, running total
+- list of transactions (history tab), all operations
+- graph
+
+nodejs, express OR python, flask (backend)
+sql (db)
+
+tie in:
+new language/tool: react OR vue (frontend)
+
+main concern: live! (ask dad)
+
+host on an actual server instead of render
+
+website changes depending on net balance
+
+
+determine core vs nice to have features
+
+------------------------------------------
+8/1/2025
+
+for next time
+fix version
+nav bar
+2 tabs
+
+------------------------------------------
+8/9/2025
+nav bar
+2 tabs
+
+connect to db
+acct mngmt - table
+transactions table
+create seeding script
+
+done:
+frontend: fixed version issues
+explored 2 db options, render fail, using supabase
+set up supabase
+created project and db, connected to backend
+created Accoutns and Transactions tables and tested connection
+set up schema
