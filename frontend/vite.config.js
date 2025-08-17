@@ -8,7 +8,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 export default defineConfig({
   plugins: [
     vue(),
-    vueDevTools(),
+    vueDevTools(), // these r the 2 icons at the bottom of the page
   ],
   resolve: {
     alias: {

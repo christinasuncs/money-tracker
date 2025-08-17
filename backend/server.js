@@ -12,6 +12,10 @@ const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseURL, supabaseKey);
 
 app.use(express.json());
+
+const accountsRouter = require('./routes/accounts')(supabase);
+app.use('/api/accounts', accountsRouter);
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });

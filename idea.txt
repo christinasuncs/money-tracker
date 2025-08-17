@@ -46,3 +46,15 @@ set up supabase
 created project and db, connected to backend
 created Accoutns and Transactions tables and tested connection
 set up schema
+
+next time:
+accounts schema: create, log in, log out
+
+------------------------------------------
+8/16/2025
+accnt mngmt - get some foundational UI done first
+- navbar: home (logo on left), transactions, login
+- create login page, consider: router
+
+done:
+login page
