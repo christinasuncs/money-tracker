@@ -69,3 +69,10 @@ to do:
 
 done:
 - backend (apis and session) for acct mangement and user session
+- inteegrate login endpoint w frontend
+- notif for success/fail login
+- create acct page
+
+next time:
+- router -> home, /login, /create
+- successful login, redirect to homepage, display logout button, integrate backend

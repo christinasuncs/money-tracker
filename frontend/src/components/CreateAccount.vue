@@ -1,6 +1,6 @@
 <template>
     <div class="login-container">
-        <h1>Login</h1>
+        <h1>Create Account</h1>
         <form @submit.prevent="handleLogin">
             <div class="form-group">
                 <label for="username">Username</label>
@@ -22,13 +22,17 @@
                     required
                 />
             </div>
-            <button type="submit">Login</button>
-            <div class="signup-link">
-                <p>Don't have an account? <a href="#">Sign up</a></p>
+            <div class="form-group">
+                <label for="password">Confirm Password</label>
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    v-model="password"
+                    placeholder="Enter your password again"
+                    required
+                />
             </div>
-            <v-snackbar v-model="snackbar" timeout="3000" :color="snackbarColor">
-                {{ snackbarText }}
-            </v-snackbar>
+            <button type="submit">Sign Up</button>
         </form>
     </div>
 </template>
@@ -41,42 +45,18 @@ export default {
         return {
             username: "",
             password: "",
-            snackbar: false,
-            snackbarColor: 'success',
-            snackbarText: '',
+            confirmPassword: "",
+            // snackbar: true,
+            // snackbarColor: 'success',
+            // snackbarText: '',
         };
     },
     methods: {
-        async handleLogin() {
-            // Handle login logic here
-            console.log("Username:", this.username);
-            console.log("Password:", this.password);
+        async createAccount() {
             try {
-                const response = await axios.post('http://localhost:5000/api/accounts/login', {
-                    username: this.username,
-                    password: this.password
-                },
-                {withCredentials: true})
-
-                if (response.data && response.data.message === 'Login successful') {
-                    this.showSnackbar('Login successful!', 'success');
-                    // ...handle successful login (e.g., redirect)...
-                } else {
-                    this.showSnackbar(response.data.error || 'Login failed.', 'error');
-                }            
             } catch (error) {
-                console.error('Login Failed:', error)
-                let msg = 'Login failed.';
-                if (error.response && error.response.data && error.response.data.error) {
-                    msg = error.response.data.error;
-                }
-                this.showSnackbar(msg, 'error');
+                console.error('Sign Up Failed:', Error)
             }
-        },
-        showSnackbar(message, color) {
-            this.snackbarText = message;
-            this.snackbarColor = color;
-            this.snackbar = true;
         },
     },
 };
@@ -118,7 +98,7 @@ input {
 button {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #0003a8;
     color: #fff;
     border: none;
     border-radius: 4px;

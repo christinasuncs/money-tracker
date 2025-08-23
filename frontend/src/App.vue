@@ -1,7 +1,8 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
-import Login from './components/Login.vue'
+// import Login from './components/Login.vue'
+// import CreateAccount from './components/CreateAccount.vue';
 </script>
 
 <template>
@@ -15,7 +16,8 @@ import Login from './components/Login.vue'
 
   <main>
     <!-- <TheWelcome /> -->
-    <Login />
+    <!-- <Login />
+    <CreateAccount /> -->
   </main>
 </template>
 
