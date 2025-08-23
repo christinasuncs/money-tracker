@@ -26,24 +26,43 @@
             <div class="signup-link">
                 <p>Don't have an account? <a href="#">Sign up</a></p>
             </div>
+            <!-- <v-snackbar v-model="snackbar" timeout="3000" :color="snackbarColor">
+                {{ snackbarText }}
+            </v-snackbar> -->
         </form>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: "Login",
     data() {
         return {
             username: "",
             password: "",
+            // snackbar: true,
+            // snackbarColor: 'success',
+            // snackbarText: '',
         };
     },
     methods: {
-        handleLogin() {
+        async handleLogin() {
             // Handle login logic here
             console.log("Username:", this.username);
             console.log("Password:", this.password);
+            try {
+                const response = await axios.post('http://localhost:5000/api/accounts/login', {
+                    username: this.username,
+                    password: this.password
+                },
+                {withCredentials: true})
+                console.log(response)
+            } catch (error) {
+                console.error('Login Failed:', error)
+                // this.snackbarText = error
+                // this.snackbarText = 'error'
+            }
         },
     },
 };

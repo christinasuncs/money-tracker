@@ -1,5 +1,7 @@
 require('dotenv').config();
 const express = require('express');
+const session = require('express-session')
+const cors = require('cors')
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -12,6 +14,16 @@ const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseURL, supabaseKey);
 
 app.use(express.json());
+app.use(cors({
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173', // frontend URL 
+  credentials: true
+}))
+app.use(session({
+  secret: 'your_secret_key', // use env var in production
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false } // set to true if using HTTPS
+}))
 
 const accountsRouter = require('./routes/accounts')(supabase);
 app.use('/api/accounts', accountsRouter);

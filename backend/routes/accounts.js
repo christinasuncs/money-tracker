@@ -52,18 +52,34 @@ module.exports = (supabase) => {
     if (!data || error) { 
         return res.status(400).json({ error: 'Invalid Credentials'})
     }
-    console.log(data)
 
     valid = await bcrypt.compare(password, data.password)
 
     if (!valid) {
         return res.status(400).json({ error: 'Invalid Credentials'})
     }
+    req.session.user = {
+      id: data.id,
+      username: data.username
+    }
     res.json({message: 'Login successful'})
   })
 
+  router.get('/session', (req, res) => {
+    if (!req.session.user) {
+      return res.status(401).json({ error: 'Not Logged In'})
+    }
+    return res.json({user: req.session.user})
+  })
+
   router.post('/logout', async (req, res) => {
-    res.json({message: 'Logout successful'})
+    req.session.destroy(err => {
+      if (err) {
+        return res.status(500).json({error: 'Logout Failed'})
+      }
+      res.clearCookie('connect.sid');
+      res.json({message: 'Logout successful'})
+    })
   })
   return router
 };

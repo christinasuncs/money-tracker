@@ -58,3 +58,14 @@ accnt mngmt - get some foundational UI done first
 
 done:
 login page
+
+------------------------------------------
+8/22/2025
+to do:
+- backend apis, ex. logout
+- set up user session -> login endpoint, session endpoint
+- snackbar???
+- create acct page
+
+done:
+- backend (apis and session) for acct mangement and user session
