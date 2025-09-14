@@ -76,3 +76,12 @@ done:
 next time:
 - router -> home, /login, /create
 - successful login, redirect to homepage, display logout button, integrate backend
+
+
+------------------------------------------
+2025/09/13
+- forgot password feature
+
+next time:
+- fix session problem
+- home/welcome page?

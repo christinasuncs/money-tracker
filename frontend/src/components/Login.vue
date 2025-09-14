@@ -63,7 +63,10 @@ export default {
                     // ...handle successful login (e.g., redirect)...
                 } else {
                     this.showSnackbar(response.data.error || 'Login failed.', 'error');
-                }            
+                }  
+                setTimeout(() => {
+                    this.$router.push('/')
+                }, 1000)          
             } catch (error) {
                 console.error('Login Failed:', error)
                 let msg = 'Login failed.';

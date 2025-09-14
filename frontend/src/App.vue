@@ -1,5 +1,6 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import Home from './components/Home.vue';
 import TheWelcome from './components/TheWelcome.vue'
 // import Login from './components/Login.vue'
 // import CreateAccount from './components/CreateAccount.vue';
@@ -15,9 +16,11 @@ import TheWelcome from './components/TheWelcome.vue'
   </header> -->
 
   <main>
+    <router-view />
     <!-- <TheWelcome /> -->
-    <!-- <Login />
-    <CreateAccount /> -->
+    <!-- <Login /> -->
+    <!-- <CreateAccount /> -->
+     <!-- <Home /> -->
   </main>
 </template>
 
