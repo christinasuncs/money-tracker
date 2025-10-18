@@ -82,6 +82,11 @@ next time:
 2025/09/13
 - forgot password feature
 
+done:
+- set up router -> home, login, create
+- login redirects to home
+- logout button + backend
+
 next time:
-- fix session problem
+- fix session problem, goes away if refresh or redirect
 - home/welcome page?
