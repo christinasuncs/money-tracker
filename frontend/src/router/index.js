@@ -5,17 +5,17 @@ import Home from '../components/Home.vue';
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'HomeView',
     component: Home,
   },
   {
     path: '/login',
-    name: 'Login',
+    name: 'LoginView',
     component: Login,
   },
   {
     path: '/create',
-    name: 'CreateAccount',
+    name: 'CreateAccountView',
     component: CreateAccount,
   },
 ];

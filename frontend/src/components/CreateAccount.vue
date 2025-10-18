@@ -40,7 +40,7 @@
 <script>
 import axios from 'axios'
 export default {
-    name: "Login",
+    name: "CreateAccountView",
     data() {
         return {
             username: "",

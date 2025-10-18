@@ -28,6 +28,9 @@ app.use(session({
 const accountsRouter = require('./routes/accounts')(supabase);
 app.use('/api/accounts', accountsRouter);
 
+const transactionsRouter = require('./routes/transactions')(supabase);
+app.use('/api/transactions', transactionsRouter);
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });

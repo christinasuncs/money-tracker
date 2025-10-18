@@ -34,9 +34,9 @@
 </template>
 
 <script>
-import axios from 'axios'
+import api from '../api'
 export default {
-    name: "Login",
+    name: "LoginView",
     data() {
         return {
             username: "",
@@ -52,11 +52,10 @@ export default {
             console.log("Username:", this.username);
             console.log("Password:", this.password);
             try {
-                const response = await axios.post('http://localhost:5000/api/accounts/login', {
+                const response = await api.post('/accounts/login', {
                     username: this.username,
                     password: this.password
-                },
-                {withCredentials: true})
+                })
 
                 if (response.data && response.data.message === 'Login successful') {
                     this.showSnackbar('Login successful!', 'success');

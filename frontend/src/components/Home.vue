@@ -1,7 +1,14 @@
 <template>
   <div class="home-container">
-    <button @click="logOut">Logout</button>
-    <button @click="checkLoginStatus">Check login status</button>
+    <div class="status-bar">
+      <div v-if="isLoggedIn" class="user-status">
+        Welcome, {{ username }}!
+        <button @click="logOut" class="status-btn">Logout</button>
+      </div>
+      <div v-else>
+        <button @click="checkLoginStatus" class="status-btn">Check login status</button>
+      </div>
+    </div>
     <section class="feature-section feature1">
       <h2>Track Your Expenses</h2>
       <p>Easily log and categorize your daily spending to stay on top of your finances.</p>
@@ -27,29 +34,44 @@
 
 
 <script>
-import axios from 'axios'
+import api from '../api';
 export default {
-    name: "Home",
+    name: "HomeView",
     data() {
-        return{
-
+        return {
+            isLoggedIn: false,
+            username: null
         }
     },
+    mounted() {
+        // Check login status when component is mounted
+        this.checkLoginStatus();
+    },
     methods: {
-        async logOut(){
+        async logOut() {
             try {
-                await axios.post ('http://localhost:5000/api/accounts/logout', {}, {withCredentials: true})
-                console.log('logged out')
+                await api.post('/accounts/logout');
+                this.isLoggedIn = false;
+                this.username = null;
+                console.log('logged out');
             } catch (error) {
-                console.error('Logout failed:', error)
+                console.error('Logout failed:', error);
             }
         },
-        async checkLoginStatus(){
+        async checkLoginStatus() {
             try {
-                const status = await axios.get('http://localhost:5000/api/accounts/session', {}, {withCredentials: true})
-                console.log(status)
+                const response = await api.get('/accounts/session');
+                this.isLoggedIn = true;
+                this.username = response.data.user.username;
+                console.log('Logged in as:', this.username);
             } catch (error) {
-                console.error('Status check failed:', error)
+                if (error.response && error.response.status === 401) {
+                    this.isLoggedIn = false;
+                    this.username = null;
+                    console.log('Not logged in');
+                } else {
+                    console.error('Error checking login status:', error);
+                }
             }
         }
     }
@@ -77,6 +99,39 @@ export default {
   background: #fff;
   box-sizing: border-box;
 }
+.status-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 100;
+}
+
+.user-status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.status-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background: #1976d2;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.status-btn:hover {
+  background: #1565c0;
+}
+
 .feature1 {
   background: linear-gradient(90deg, #e0eafc 0%, #cfdef3 100%);
 }
