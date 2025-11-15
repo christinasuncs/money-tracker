@@ -31,6 +31,7 @@ module.exports = (supabase) => {
             return res.status(500).json({error: 'Internal server error'})
         }
     })
+    // Create
     router.post('/', async (req, res) => {
         if (!req.session.user) { // check if user is logged in
             return res.status(401).json({ error: 'Not logged in'})
@@ -61,6 +62,7 @@ module.exports = (supabase) => {
             return res.status(500).json({error: 'Internal server error'})
         }
     })
+    // Update
     router.put('/:transactionId', async (req, res) => {
         if (!req.session.user) { // check if user is logged in
             return res.status(401).json({ error: 'Not logged in'})
@@ -85,9 +87,31 @@ module.exports = (supabase) => {
                 .select()
             if (error) {
                 console.error("Error updating transaction: ", error)
-                return res.status(500).json({error: "Failed to update transactions."})
+                return res.status(500).json({error: "Failed to update transaction."})
             }
             res.status(201).json({message: "Transaction updated successfully", transaction: data})
+        } catch (error) {
+            console.error('Server error: ', error)
+            return res.status(500).json({error: 'Internal server error'})
+        }
+    }) 
+    // Delete
+    router.delete('/:transactionId', async (req, res) => {
+        if (!req.session.user) { // check if user is logged in
+            return res.status(401).json({ error: 'Not logged in'})
+        }
+        const transactionId = req.params.transactionId
+        try {
+            const { data, error } = await supabase
+                .from('Transactions')
+                .delete()
+                .eq('id', transactionId)
+                .select()
+            if (error) {
+                console.error("Error deleting transaction: ", error)
+                return res.status(500).json({error: "Failed to delete transaction."})
+            }
+            res.status(201).json({message: "Transaction deleted successfully", transaction: data})
         } catch (error) {
             console.error('Server error: ', error)
             return res.status(500).json({error: 'Internal server error'})

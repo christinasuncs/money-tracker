@@ -90,3 +90,29 @@ done:
 next time:
 - fix session problem, goes away if refresh or redirect
 - home/welcome page?
+
+------------------------------------------
+2025/10/18
+
+done:
+- fixed session issue
+- started transactions endpoints
+
+next time:
+- cont/finish transactions endpoints
+
+------------------------------------------
+2025/11/06
+
+done:
+- transactions endpoint: done create, wip update
+
+next time:
+- fin transactions endpoints
+
+------------------------------------------
+2025/11/15
+
+done:
+- update transactions endpoint
+- delete transactions endpoint
