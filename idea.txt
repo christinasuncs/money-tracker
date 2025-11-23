@@ -116,3 +116,24 @@ next time:
 done:
 - update transactions endpoint
 - delete transactions endpoint
+
+next time:
+- login redirect to dashboard
+- dashboard: table with all transactions, pagination, filter by categories, diagram/graph that shows distribution of funds, create new categories
+- use camera to scan transaction/cash register/recipt: AI image recognition + implement user camera
+- turn this into a phone app (or web app disgused as phone app)
+
+------------------------------------------
+2025/11/22
+
+to do:
+- UI work
+
+done:
+- set up dashboard page
+- added sidebar
+- added signout function
+- basic set up i.e. fetching transactions, users
+
+next time:
+- transactions table and categories (to filter transactions and for pi chart)

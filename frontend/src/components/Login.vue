@@ -64,7 +64,7 @@ export default {
                     this.showSnackbar(response.data.error || 'Login failed.', 'error');
                 }  
                 setTimeout(() => {
-                    this.$router.push('/')
+                    this.$router.push('/dashboard')
                 }, 1000)          
             } catch (error) {
                 console.error('Login Failed:', error)
